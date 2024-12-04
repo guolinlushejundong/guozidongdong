@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>东东 ❤️ 郭子的恋爱日记</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Arial', sans-serif;
+      background: linear-gradient(to bottom, #FFF5E1, #FFDAB9);
+      color: #333;
+      overflow-x: hidden;
+    }
+    header {
+      text-align: center;
+      padding: 20px;
+      background: url('kk.jpg') no-repeat center center fixed;
+      background-size: cover
+      color: white;
+      font-size: 28px;
+      font-weight: bold;
+    }
+    /* 适用于网页容器内容 */
+    .container {
+      background-color: rgba(255, 255, 255, 0.8); /* 半透明白色背景 */
+      padding: 20px; /* 内边距 */
+      border-radius: 10px; /* 圆角效果（可选） */
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* 添加阴影（可选） */
+    }
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      padding: 20px;
+    }
+    .gallery img {
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      width: 200px;
+      height: 200px;
+      object-fit: cover;
+    }
+    .timeline {
+      padding: 20px;
+    }
+    .timeline div {
+      margin-bottom: 20px;
+    }
+    .timeline h3 {
+      background-color: #FFB6C1;
+      display: inline-block;
+      padding: 5px 10px;
+      border-radius: 5px;
+      color: white;
+    }
+    .timeline p {
+      margin: 5px 0;
+    }
+    .comment-section {
+      padding: 20px;
+      background: #FFF;
+      border-top: 2px solid #FFB6C1;
+    }
+    .comment-section textarea {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+    }
+    .comment-section button {
+      background-color: #FFB6C1;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    footer {
+      text-align: center;
+      padding: 10px;
+      background-color: #FFB6C1;
+      color: white;
+    }
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+    .scroll-animation {
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeIn 1s forwards;
+    }
+  </style>
+</head>
+<body>
+  <header>东东 ❤️ 郭子恋爱日记</header>
+
+  <!-- 纪念日计时 -->
+  <div class="counter">
+    我们相爱了 <span id="daysCount">0</span> 天 ❤️
+  </div>
+
+  <!-- 照片回忆 -->
+  <section class="gallery scroll-animation">
+    <img src="1.jpg" alt="回忆照片1">
+    <img src="2.jpg" alt="回忆照片2">
+    <img src="33.jpg" alt="回忆照片3"> 
+    <img src="444.jpg" alt="回忆照片3">
+    <img src="55.jpg" alt="回忆照片3">
+    <img src="6.jpg" alt="回忆照片3">
+    <img src="77.jpg" alt="回忆照片3">
+    <img src="8.jpg" alt="回忆照片3">
+    <img src="999.jpg" alt="回忆照片3">
+    <img src="10.jpg" alt="回忆照片3">
+  </section>
+
+  <!-- 时间轴 -->
+  <section class="timeline scroll-animation">
+    <div>
+      <h3>2023年12月31日</h3>
+      <p>我们第一次一起跨年。</p>
+    </div>
+    <div>
+      <h3>2024年5月31日</h3>
+      <p>我们第一次单独出来玩。</p>
+    </div>
+    <div>
+      <h3>2024年7月29日</h3>
+      <p>我们正式在一起。</p>
+    </div>
+    <div>
+      <h3>2024年7月31日</h3>
+      <p>我们的第一次约会。</p>
+    </div>
+  </section>
+
+  <!-- 留言板 -->
+  <section class="comment-section scroll-animation">
+    <h3>留言板</h3>
+    <textarea id="commentInput" rows="4" placeholder="写点什么吧..."></textarea>
+    <button onclick="addComment()">提交</button>
+    <div id="comments"></div>
+  </section>
+
+  <footer>东东和郭子的恋爱日记 ❤️</footer>
+
+  <!-- JavaScript -->
+  <script>
+    // 纪念日计时
+    function updateDaysCount() {
+      const startDate = new Date('2024-07-29');
+      const today = new Date();
+      const diff = Math.floor((today - startDate) / (1000 * 60 * 60 * 24));
+      document.getElementById('daysCount').textContent = diff;
+    }
+    updateDaysCount();
+    setInterval(updateDaysCount, 86400000);
+
+    // 添加留言功能
+    function addComment() {
+      const commentInput = document.getElementById('commentInput');
+      const comments = document.getElementById('comments');
+      if (commentInput.value.trim()) {
+        const newComment = document.createElement('p');
+        newComment.textContent = commentInput.value.trim();
+        comments.appendChild(newComment);
+        commentInput.value = '';
+      }
+    }
+
+    // 滚动动画
+    const scrollAnimations = document.querySelectorAll('.scroll-animation');
+    window.addEventListener('scroll', () => {
+      scrollAnimations.forEach((element) => {
+        const position = element.getBoundingClientRect().top;
+        if (position < window.innerHeight) {
+          element.style.opacity = 1;
+          element.style.transform = 'translateY(0)';
+        }
+      });
+    });
+  </script>
+
+  <!-- 背景音乐 -->
+  <audio autoplay loop>
+    <source src="your-music-file.mp3" type="audio/mpeg">
+    您的浏览器不支持音频播放。
+  </audio>
+</body>
+</html>
